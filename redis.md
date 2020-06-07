@@ -57,7 +57,7 @@
         - 同时过期、宕机
         - 解决: 如果过期 过期时间加随机值
         - 解决: 宕机
-        <img src="./image/redis-caching-avalanche-solution.jpg" height="300" width="800"/>
+        <img src="./image/redis-caching-avalanche-solution.png" height="300" width="800"/>
 
     - 缓存穿透  
         - 布隆过滤器 提前拦截
