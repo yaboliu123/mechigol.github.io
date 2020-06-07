@@ -6,4 +6,4 @@
 
 [网络](https://mechigol.github.io/net.html)
 
-[数据库](https://mechigol.github.io/dbs.html)
+[数据库](https://mechigol.github.io/db.html)
