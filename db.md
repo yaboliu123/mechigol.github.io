@@ -13,7 +13,7 @@
     - 肮读  Read-Uncommited
     - 不可重复读  Read-commited会有问题，只要commit就能读到
     - 幻读 T1读，T2插入，T1再读
-    - select @@tx_isolation 
+    - `select @@tx_isolation`
 4. Next-Key lock 解决幻读  gap lock 防止在一个范围内插入数据
 5. 数据库分片方案
     1. 客户端代理Sharding-JDBC
@@ -31,7 +31,7 @@
 
 9. redo log vs. binlog  
     - redo:
-        - 物理日志 引擎层 InnoDB特有   
+        - 物理日志 引擎层 InnoDB特有
         - WAL (Write-Ahead Logging) 先日志，后更新内存  
         - 固定大小，比如4个文件每个1G
         - 作用: 数据异常处理恢复  Crash-safe
@@ -89,6 +89,11 @@
         - 查询一个字段或者很少字段的情况下使用时，给查询带来优化效果。但是在字段很多的时候使用，却会大大降低查询效率
         - 反例: `SELECT DISTINCT * from  user;`  
         - 正例: `SELECT DISTINCT name from user;`
+    12. 尽量使用数字型字段，若只含数值信息的字段尽量不要设计，速度快
+    13. 尽可能使用varchar/nvarchar 代替 char/nchar。
+        - 因为首先变长字段存储空间小，可以节省存储空间。
+        - 一个相对较小的字段内搜索，效率更高
+    14. MySQL会做隐式的类型转换， 123 和 ‘123’
 14. 开发规范
     1. 预编译语句进行数据库操作
         - 一次解析, 多次使用，高效
@@ -107,8 +112,8 @@
         //或者分开两条sql写：  
         `select * fromuserwhere userid=1`  
         `select * fromuserwhere age = 18`
-    5. WHERE 从句中禁止对列进行函数转换和计算 
-        - 原因: 无法利用索引 
+    5. WHERE 从句中禁止对列进行函数转换和计算
+        - 原因: 无法利用索引
         - `where date(create_time)='20190101'`
         - 修改为 `where create_time >= '20190101' and create_time < '20190102'`
     6. 超 100 万行的批量写 (UPDATE,DELETE,INSERT) 操作,要分批多次进行操作
