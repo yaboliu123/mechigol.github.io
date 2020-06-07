@@ -85,6 +85,10 @@
         - 修改为  
         `select age,name  from user where age <18;`  
         `select age,name  from user where age >18;`
+    11. 慎用distinct关键字  
+        - 查询一个字段或者很少字段的情况下使用时，给查询带来优化效果。但是在字段很多的时候使用，却会大大降低查询效率
+        - 反例: `SELECT DISTINCT * from  user;`  
+        - 正例: `SELECT DISTINCT name from user;`
 14. 开发规范
     1. 预编译语句进行数据库操作
         - 一次解析, 多次使用，高效
