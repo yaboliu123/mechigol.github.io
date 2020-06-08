@@ -15,3 +15,7 @@
 &emsp;&emsp;[Kafka](https://mechigol.github.io/kafka.html)
 
 &emsp;&emsp;[Spring](https://mechigol.github.io/spring.html)
+
+&emsp;&emsp;[数据结构](https://mechigol.github.io/data_structure.html)
+
+&emsp;&emsp;[算法](https://mechigol.github.io/algorithm.html)
