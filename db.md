@@ -22,7 +22,7 @@
     原因: 每个数据库的id都是从1开始  
     1. UUID  缺点:太长 无序
     2. 数据库id   缺点:独立部署，维护成本，性能瓶颈
-    3. Redis
+    3. Redis 单线程先生原子性 command:INCR/INCRBY 集群部署
     4. Snowflake
 7. 数据库查询顺序  
 <img src="./image/db_query.png" height="300" width="800"/>
