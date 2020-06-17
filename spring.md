@@ -98,3 +98,16 @@
             }
         }
         ```
+11. Spring Boot 全局异常处理
+    - ControllerAdvice 开启了全局异常的捕获    
+    ```java
+    @ControllerAdvice
+    public class MyExceptionHandler {
+
+        @ExceptionHandler(value =Exception.class)
+        public String exceptionHandler(Exception e){
+            System.out.println("未知异常！原因是:"+e);
+            return e.getMessage();
+        }
+    }
+    ```
