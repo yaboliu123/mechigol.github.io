@@ -60,3 +60,41 @@
     其他情况：
 
         - TransactionDefinition.PROPAGATION_NESTED： 如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则该取值等价于TransactionDefinition.PROPAGATION_REQUIRED
+    
+7. BeanFactory & FactoryBean
+    - BeanFactory是一个接口，它是Spring中工厂的顶层规范，是SpringIoc容器的核心接口
+    具体实现DefaultListableBeanFactory, XmlBeanFactory, XmlBeanFactory
+    - FactoryBean是一个Bean，但又不仅仅是一个Bean。它是一个能生产或修饰对象生成的工厂Bean，类似于设计模式中的工厂模式和装饰器模式
+        - 即一个Bean A如果实现了FactoryBean接口，那么A就变成了一个工厂，根据A的名称获取到的实际上是工厂调用getObject()返回的对象，而不是A本身，如果要获取工厂A自身的实例，那么需要在名称前面加上'&'符号。
+        - getObject('name')返回工厂中的实例
+        - getObject('&name')返回工厂本身的实例
+
+8. BeanFactoryPostProcessor & BeanPostProcessor
+    - BeanFactoryPostProcessor 是与 BeanDefinition 打交道的，如果想要与 Bean 打交道，请使用 BeanPostProcessor
+    - BeanFactoryPostProcessor 同样支持排序，一个容器可以同时拥有多个 BeanFactoryPostProcessor ，这个时候如果我们比较在乎他们的顺序的话，可以实现 Ordered 接口
+
+9. ApplicationContext
+    - 会自动识别配置文件中的 BeanFactoryPostProcessor 并且完成注册和调用，我们只需要简单的配置声明
+    - 也可以自动识别BeanPostProcessor
+    - 都有方法定义再refresh()中
+    - ApplicationContext使用即时加载，BeanFactory使用懒加载
+
+10. Spring事件驱动模型
+    - 三个概念：事件、事件监听器、事件发布者
+    - @EventListener注解代替实现ApplicationListener接口,
+    - 事件：HomeWorkEvent extends ApplicationEvent
+    - 事件监听者StudentListener implements ApplicationListener<HomeWorkEvent>
+    - 事件发布者
+        ```java
+
+        @Component
+        public class TeacherPublisher {
+            @Autowired
+            private ApplicationContext applicationContext;
+            
+            public void publishHomeWork(String content){
+                HomeWorkEvent homeWorkEvent = new HomeWorkEvent(this, content);
+                applicationContext.publishEvent(homeWorkEvent);
+            }
+        }
+        ```
