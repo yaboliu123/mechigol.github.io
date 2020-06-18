@@ -19,3 +19,5 @@
 &emsp;&emsp;[数据结构](https://mechigol.github.io/data_structure.html)
 
 &emsp;&emsp;[算法](https://mechigol.github.io/algorithm.html)
+
+&emsp;&emsp;[Java基础](https://mechigol.github.io/java_basics.html)

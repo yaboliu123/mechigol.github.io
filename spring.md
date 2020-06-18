@@ -60,6 +60,7 @@
     其他情况：
 
         - TransactionDefinition.PROPAGATION_NESTED： 如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则该取值等价于TransactionDefinition.PROPAGATION_REQUIRED
+<<<<<<< Updated upstream
     
 7. BeanFactory & FactoryBean
     - BeanFactory是一个接口，它是Spring中工厂的顶层规范，是SpringIoc容器的核心接口
@@ -111,3 +112,12 @@
         }
     }
     ```
+=======
+7. Spring循环依赖问题
+    - 构造器的循环依赖。【这个Spring解决不了】
+    - setter循环依赖 field属性的循环依赖【setter方式 单例，默认方式-->通过递归方法找出当前Bean所依赖的Bean，然后提前缓存【会放入Cach中】起来。通过提前暴露 -->暴露一个exposedObject用于返回提前暴露的Bean
+8. Spring Bean的实例化过程
+9. BeanFactory & FactoryBean
+10. Spring中不同的事件监听器/观察者模式
+11. BeanFactory & ApplicationContext
+>>>>>>> Stashed changes
